@@ -186,7 +186,7 @@ def createDDS(path):
             texW = charTex.width
             texH = charTex.height
 
-            if (X+texW) > 512:
+            if (X+texW) > size[0]:
                 X = 0
                 Y += texH
             newDDS.composite(charTex, left=X, top=Y)
