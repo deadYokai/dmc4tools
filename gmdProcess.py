@@ -113,7 +113,7 @@ class BinaryStream:
         return unpack(fmt, self.readBytes(length))[0]
 
 import glob
-
+import re
 def text(path, pack):
     f = os.path.dirname(os.path.abspath(path))
     baseName = os.path.basename(path).split('.')[0]
@@ -135,22 +135,46 @@ def text(path, pack):
         print(diff)
         gReader.seek(diff)
         with open(fr"{f}{os.sep}{baseName}.txt", mode2, encoding="utf-8") as out:
+            idnum = 0
             if not pack:
                 data = gReader.readBytes(count).replace(b'\x00', b'FFFFFFFF').decode("UTF-8")
                 text = data.split('FFFFFFFF')
                 for a in text:
-                    out.write("---STARTSTRING---\n")
+                    out.write(f"---STARTSTRING[{idnum}]---\n")
                     out.write(a)
                     out.write("\n---ENDSTRING---\n\n")
+                    idnum += 1
             else:
                 gReader.clear()
-                text = out.read().replace("---STARTSTRING---\n", '').split("\n---ENDSTRING---\n\n")
+                pt = out.read()
+                # pattern = r"---STARTSTRING(?:\[\d+\]|)---\n(.+?|\n)(?:|\n)---ENDSTRING---"
+                # text = re.sub(r"---STARTSTRING\[.*\]---\n", '', pt).replace("---STARTSTRING---\n", '').split("\n---ENDSTRING---\n\n")
+                # text = re.findall(pattern, pt, re.DOTALL)
+                lines = pt.split('\n')
+                linearr = []
+                lineblock = []
+                inBlock = False
+                for line in lines:
+
+                    if line.startswith("---STARTSTRING"):
+                        inBlock = True
+
+
+                    if line.startswith("---ENDSTRING---"):
+                        lineblock.append('\n'.join(linearr))
+                        linearr = []
+                        inBlock = False
+
+                    if(inBlock):
+                        linearr.append(line)
+
+                print(len(lineblock))
                 c = 0
-                for a in text:
+                for a in lineblock:
                     data = a.replace('\n', '\r\n').encode("UTF-8") + b'\x00'
-                    print(data)
                     gReader.writeBytes(data)
                     c += len(data)
+
                 o = gReader.offset()
                 gReader.seek(32)
                 gReader.writeUInt32(c)
