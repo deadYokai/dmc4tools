@@ -4,12 +4,10 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-#include <filesystem>
 #include <fstream>
 #include <iostream>
 #include <istream>
 #include <iterator>
-#include <sstream>
 
 using namespace std;
 
@@ -32,22 +30,22 @@ void conv2msg(char* fname){
 	char arr[4];
 	char arr2[2];
 	array<array<char, 4>, 2000> arr3;
-	char arr4[8];
-	char arr5[52];
+	char header_magick[8];
+	char header_end[52];
 
 	int n = 0;
 	int n2 = 0;
 	int n3 = 0;
 
-	msgFile.read(reinterpret_cast<char*>(&arr4), 8);
-	if(arr4[0] != 'M' || arr4[1] != 'S' || arr4[2] != 'G' || arr4[3] != '2')
+	msgFile.read(reinterpret_cast<char*>(&header_magick), 8);
+	if(header_magick[0] != 'M' || header_magick[1] != 'S' || header_magick[2] != 'G' || header_magick[3] != '2')
 	{
 		printf("File '%s' if not MSG2\n", fname);
 		exit(1);
 	}
 
 	msgFile.read(reinterpret_cast<char*>(&arr), 4);
-	msgFile.read(reinterpret_cast<char*>(&arr5), 52);
+	msgFile.read(reinterpret_cast<char*>(&header_end), 52);
 	msgFile.seekg(64, ios::beg);
 
 	while(n != -1)
@@ -69,7 +67,7 @@ void conv2msg(char* fname){
 
 		if(arr[0] == 0)
 		{
-			if((arr[2] != (char)0x10 || arr[3] != 4) && (arr[2] != 3 || arr[3] != 4) && ((arr[0] == 0 && arr[1] == 0) || arr[2] == (char)0x11))
+			if((arr[2] != '\x10' || arr[3] != 4) && (arr[2] != 3 || arr[3] != 4) && ((arr[0] == 0 && arr[1] == 0) || arr[2] == '\x11') && (arr[2] < 32))
 			{
 				arr3[n2][0] = arr[0];
 				arr3[n2][1] = arr[1];
@@ -146,18 +144,18 @@ void conv2msg(char* fname){
 	}
 
 	std::ofstream newMsgFile(msg2fn, std::ios::binary);
-	newMsgFile.write(arr4, 8);
+	newMsgFile.write(header_magick, 8);
 	long n5 = (64 + n3 * 4) + (txtSize / 2 - (n3 * 2)) * 4;
 	memcpy(arr, &n5, sizeof(arr));
 	newMsgFile.write(arr, 4);
-	newMsgFile.write(arr5, 52);
+	newMsgFile.write(header_end, 52);
 	txtFile.seekg(2, ios::beg);
 	n4 = 0;
 	while(n2 != n4)
 	{
 		txtFile.read(reinterpret_cast<char*>(&arr2), 2);
 
-		if(arr2[0] == (char)164)
+		if(arr2[0] == '\xa4')
 		{
 			arr[0] = arr3[n4][0];
 			arr[1] = arr3[n4][1];
@@ -165,6 +163,7 @@ void conv2msg(char* fname){
 			arr[3] = arr3[n4][3];
 			newMsgFile.write(arr, 4);
 			n4++;
+			printf("%i \n", arr[2]);
 		}
 		else
 		{
@@ -177,8 +176,8 @@ void conv2msg(char* fname){
 						txtFile.read(reinterpret_cast<char*>(&arr2), 2);
 						arr[0] = (char)0;
 						arr[1] = (char)0;
-						arr[2] = (char)16;
-						arr[3] = (char)4;
+						arr[2] = '\x10';
+						arr[3] = '\x04';
 						break;
 					case 34:
 						arr[0] = '(';
