@@ -156,6 +156,7 @@ def cropDDS(path):
                 if w != 0 and h != 0:
                     with ddsFile[x:w+x, y:h+y] as charImg:
                         imgpath = os.path.join(f, fr"_{baseName}", f"{hexChar}.dds")
+                        charImg.compression = 'dxt5'
                         charImg.save(filename=imgpath)
                 else:
                     zs = True
@@ -175,6 +176,7 @@ def createDDS(path):
     origDDS = glob.glob(fr"{f}{os.sep}{baseName}*.dds")[0]
     ddsGlob.sort()
     newDDS = Image(width=size[0], height=size[1])
+    newDDS.compression = 'dxt5'
     X = 0
     Y = 0
     chars = {}
@@ -189,7 +191,7 @@ def createDDS(path):
             if (X+texW) > size[0]:
                 X = 0
                 Y += texH
-            newDDS.composite(charTex, left=X, top=Y)
+            newDDS.composite(charTex, left=X, top=Y, operator='copy')
             chars[charHex] = {"x": X, "y": Y, "w": texW, "h": texH, "offset": texW, "somedata": "0000"}
             X += texW
     if not os.path.isfile(origDDS + ".bak"):

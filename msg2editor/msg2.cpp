@@ -1,10 +1,15 @@
 #include <algorithm>
 #include <array>
+#include <cstdint>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <filesystem>
 #include <fstream>
+#include <iostream>
+#include <istream>
+#include <iterator>
+#include <sstream>
 
 using namespace std;
 
@@ -23,7 +28,6 @@ void conv2msg(char* fname){
 		printf("Unable to open file: %s\n", fname);
 		exit(1);
 	}
-	std::ofstream newMsgFile(msg2fn, std::ios::binary);
 
 	char arr[4];
 	char arr2[2];
@@ -65,7 +69,7 @@ void conv2msg(char* fname){
 
 		if(arr[0] == 0)
 		{
-			if((arr[2] != 0x10 || arr[3] != 4) && (arr[2] != 3 || arr[3] != 4) && ((arr[0] == 0 && arr[1] == 0) || arr[2] == 0x11))
+			if((arr[2] != (char)0x10 || arr[3] != 4) && (arr[2] != 3 || arr[3] != 4) && ((arr[0] == 0 && arr[1] == 0) || arr[2] == (char)0x11))
 			{
 				arr3[n2][0] = arr[0];
 				arr3[n2][1] = arr[1];
@@ -93,8 +97,37 @@ void conv2msg(char* fname){
 		exit(1);
 	}
 
-	size_t txtSize = filesystem::file_size(textfn) - 2;
+	txtFile.seekg(0, ios::end);
+	size_t txtSize = static_cast<size_t>(txtFile.tellg());
+
+	
+	char endCheck[1];
+	txtFile.seekg(-1, ios::end);
+	txtFile.read(endCheck, 1);
+	int off = 0;
+	while(endCheck[0] != '\xa4'){
+		txtFile.seekg(-2, ios::cur);
+		txtFile.read(endCheck, 1);
+		off++;
+	}
+
+	if(off > 1){
+		txtSize = txtSize - off + 1;
+		txtFile.seekg(0, ios::beg);
+		char* buff = new char[txtSize];
+		txtFile.read(buff, txtSize);
+		txtFile.close();
+
+		ofstream modTxt(textfn);
+		modTxt.write(buff, txtSize);
+		modTxt.close();
+		delete[] buff;
+		txtFile.open(textfn, ios::binary);
+	}
+
 	int n4;
+	txtSize = txtSize-2;
+
 	txtFile.seekg(2, ios::beg);
 	while(n4 < txtSize)
 	{
@@ -112,6 +145,7 @@ void conv2msg(char* fname){
 		n4++;
 	}
 
+	std::ofstream newMsgFile(msg2fn, std::ios::binary);
 	newMsgFile.write(arr4, 8);
 	long n5 = (64 + n3 * 4) + (txtSize / 2 - (n3 * 2)) * 4;
 	memcpy(arr, &n5, sizeof(arr));
@@ -122,6 +156,7 @@ void conv2msg(char* fname){
 	while(n2 != n4)
 	{
 		txtFile.read(reinterpret_cast<char*>(&arr2), 2);
+
 		if(arr2[0] == (char)164)
 		{
 			arr[0] = arr3[n4][0];
@@ -722,6 +757,23 @@ void conv2msg(char* fname){
 						arr[3] = 0;
 						break;
 				}
+			}else if(arr2[1] == 4){
+				uint8_t bb = (uint8_t)arr2[0];
+				switch(bb){
+					case 0x10:
+						arr[0] = 0x20;
+						arr[1] = 0x01;
+						arr[2] = (char)69;
+						arr[3] = 0;
+						break;
+					case 0x11:
+						arr[0] = 0x22;
+						arr[1] = 0x01;
+						arr[2] = (char)69;
+						arr[3] = 0;
+					default:
+						break;
+				}
 			}else{
 				uint8_t b2 = (uint8_t)arr2[0];
 				switch (b2) {
@@ -805,10 +857,6 @@ void conv2text(char* fname){
 						arr[0] = 0xFB;
 						arr[1] = 0;
 						break;
-					case 1:
-					case 3:
-					case 5:
-						break;
 					case 2:
 						arr[0] = 0xFC;
 						arr[1] = 0;
@@ -828,12 +876,6 @@ void conv2text(char* fname){
 					case 16:
 						arr[0] = 0xD9;
 						arr[1] = 0;
-						break;
-					case 17:
-					case 19:
-					case 21:
-					case 23:
-					case 25:
 						break;
 					case 18:
 						arr[0] = 0xBA;
