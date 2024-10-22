@@ -100,7 +100,7 @@ void conv2msg(char* fname){
 	txtFile.seekg(0, ios::end);
 	size_t txtSize = static_cast<size_t>(txtFile.tellg());
 
-	
+
 	char endCheck[1];
 	txtFile.seekg(-1, ios::end);
 	txtFile.read(endCheck, 1);
@@ -763,15 +763,412 @@ void conv2msg(char* fname){
 					case 0x10:
 						arr[0] = 0x20;
 						arr[1] = 0x01;
-						arr[2] = (char)69;
+						arr[2] = (char)86;
 						arr[3] = 0;
 						break;
 					case 0x11:
 						arr[0] = 0x22;
 						arr[1] = 0x01;
-						arr[2] = (char)69;
+						arr[2] = (char)71;
 						arr[3] = 0;
+						break;
+					case 0x12:
+						arr[0] = 0x24;
+						arr[1] = 0x01;
+						arr[2] = (char)79;
+						arr[3] = 0;
+						break;
+					case 0x13:
+						arr[0] = 0x26;
+						arr[1] = 0x01;
+						arr[2] = (char)56;
+						arr[3] = 0;
+						break;
+					case 0x90:
+						arr[0] = 0x28;
+						arr[1] = 0x01;
+						arr[2] = (char)56;
+						arr[3] = 0;
+						break;
+					case 0x14:
+						arr[0] = 0x2a;
+						arr[1] = 0x01;
+						arr[2] = (char)87;
+						arr[3] = 0;
+						break;
+					case 0x15:
+						arr[0] = 0x2c;
+						arr[1] = 0x01;
+						arr[2] = (char)75;
+						arr[3] = 0;
+						break;
+					case 0x04:
+						arr[0] = 0x2e;
+						arr[1] = 0x01;
+						arr[2] = (char)79;
+						arr[3] = 0;
+						break;
+					case 0x16:
+						arr[0] = 0x30;
+						arr[1] = 0x01;
+						arr[2] = (char)119;
+						arr[3] = 0;
+						break;
+					case 0x17:
+						arr[0] = 0x32;
+						arr[1] = 0x01;
+						arr[2] = (char)74;
+						arr[3] = 0;
+						break;
+					case 0x18:
+						arr[0] = 0x34;
+						arr[1] = 0x01;
+						arr[2] = (char)86;
+						arr[3] = 0;
+						break;
+					case 0x06:
+						arr[0] = 0x36;
+						arr[1] = 0x01;
+						arr[2] = (char)28;
+						arr[3] = 0;
+						break;
+					case 0x07:
+						arr[0] = 0x38;
+						arr[1] = 0x01;
+						arr[2] = (char)50;
+						arr[3] = 0;
+						break;
+					case 0x19:
+						arr[0] = 0x3a;
+						arr[1] = 0x01;
+						arr[2] = (char)86;
+						arr[3] = 0;
+						break;
+					case 0x1a:
+						arr[0] = 0x3c;
+						arr[1] = 0x01;
+						arr[2] = (char)86;
+						arr[3] = 0;
+						break;
+					case 0x1b:
+						arr[0] = 0x3e;
+						arr[1] = 0x01;
+						arr[2] = (char)86;
+						arr[3] = 0;
+						break;
+					case 0x1c:
+						arr[0] = 0x40;
+						arr[1] = 0x01;
+						arr[2] = (char)100;
+						arr[3] = 0;
+						break;
+					case 0x1d:
+						arr[0] = 0x42;
+						arr[1] = 0x01;
+						arr[2] = (char)86;
+						arr[3] = 0;
+						break;
+					case 0x1e:
+						arr[0] = 0x44;
+						arr[1] = 0x01;
+						arr[2] = (char)92;
+						arr[3] = 0;
+						break;
+					case 0x1f:
+						arr[0] = 0x46;
+						arr[1] = 0x01;
+						arr[2] = (char)86;
+						arr[3] = 0;
+						break;
+					case 0x20:
+						arr[0] = 0x48;
+						arr[1] = 0x01;
+						arr[2] = (char)72;
+						arr[3] = 0;
+						break;
+					case 0x21:
+						arr[0] = 0x4a;
+						arr[1] = 0x01;
+						arr[2] = (char)80;
+						arr[3] = 0;
+						break;
+					case 0x22:
+						arr[0] = 0x4c;
+						arr[1] = 0x01;
+						arr[2] = (char)80;
+						arr[3] = 0;
+						break;
+					case 0x23:
+						arr[0] = 0x4e;
+						arr[1] = 0x01;
+						arr[2] = (char)80;
+						arr[3] = 0;
+						break;
+					case 0x24:
+						arr[0] = 0x50;
+						arr[1] = 0x01;
+						arr[2] = (char)106;
+						arr[3] = 0;
+						break;
+					case 0x25:
+						arr[0] = 0x52;
+						arr[1] = 0x01;
+						arr[2] = (char)86;
+						arr[3] = 0;
+						break;
+					case 0x26:
+						arr[0] = 0x54;
+						arr[1] = 0x01;
+						arr[2] = (char)86;
+						arr[3] = 0;
+						break;
+					case 0x27:
+						arr[0] = 0x56;
+						arr[1] = 0x01;
+						arr[2] = (char)72;
+						arr[3] = 0;
+						break;
+					case 0x28:
+						arr[0] = 0x58;
+						arr[1] = 0x01;
+						arr[2] = (char)112;
+						arr[3] = 0;
+						break;
+					case 0x29:
+						arr[0] = 0x5a;
+						arr[1] = 0x01;
+						arr[2] = (char)112;
+						arr[3] = 0;
+						break;
+					case 0x2c:
+						arr[0] = 0x5c;
+						arr[1] = 0x01;
+						arr[2] = (char)72;
+						arr[3] = 0;
+						break;
+					case 0x2e:
+						arr[0] = 0x5e;
+						arr[1] = 0x01;
+						arr[2] = (char)118;
+						arr[3] = 0;
+						break;
+					case 0x2f:
+						arr[0] = 0x60;
+						arr[1] = 0x01;
+						arr[2] = (char)86;
+						arr[3] = 0;
+						break;
+						/// 
+						///
+						///
+						/// SMOL LETTERS
+						///
+						///
+						///
+						///
+					case 0x30:
+						arr[0] = 0x62;
+						arr[1] = 0x01;
+						arr[2] = (char)56;
+						arr[3] = 0;
+						break;
+					case 0x31:
+						arr[0] = 0x64;
+						arr[1] = 0x01;
+						arr[2] = (char)64;
+						arr[3] = 0;
+						break;
+					case 0x32:
+						arr[0] = 0x66;
+						arr[1] = 0x01;
+						arr[2] = (char)60;
+						arr[3] = 0;
+						break;
+					case 0x33:
+						arr[0] = 0x68;
+						arr[1] = 0x01;
+						arr[2] = (char)48;
+						arr[3] = 0;
+						break;
+					case 0x91:
+						arr[0] = 0x6a;
+						arr[1] = 0x01;
+						arr[2] = (char)48;
+						arr[3] = 0;
+						break;
+					case 0x34:
+						arr[0] = 0x6c;
+						arr[1] = 0x01;
+						arr[2] = (char)64;
+						arr[3] = 0;
+						break;
+					case 0x35:
+						arr[0] = 0x6e;
+						arr[1] = 0x01;
+						arr[2] = (char)56;
+						arr[3] = 0;
+						break;
+					case 0x54:
+						arr[0] = 0x70;
+						arr[1] = 0x01;
+						arr[2] = (char)56;
+						arr[3] = 0;
+						break;
+					case 0x36:
+						arr[0] = 0x72;
+						arr[1] = 0x01;
+						arr[2] = (char)92;
+						arr[3] = 0;
+						break;
+					case 0x37:
+						arr[0] = 0x74;
+						arr[1] = 0x01;
+						arr[2] = (char)52;
+						arr[3] = 0;
+						break;
+					case 0x38:
+						arr[0] = 0x76;
+						arr[1] = 0x01;
+						arr[2] = (char)64;
+						arr[3] = 0;
+						break;
+					case 0x56:
+						arr[0] = 0x78;
+						arr[1] = 0x01;
+						arr[2] = (char)24;
+						arr[3] = 0;
+						break;
+					case 0x57:
+						arr[0] = 0x7a;
+						arr[1] = 0x01;
+						arr[2] = (char)40;
+						arr[3] = 0;
+						break;
+					case 0x39:
+						arr[0] = 0x7c;
+						arr[1] = 0x01;
+						arr[2] = (char)64;
+						arr[3] = 0;
+						break;
+					case 0x3a:
+						arr[0] = 0x7e;
+						arr[1] = 0x01;
+						arr[2] = (char)68;
+						arr[3] = 0;
+						break;
+					case 0x3b:
+						arr[0] = 0x80;
+						arr[1] = 0x01;
+						arr[2] = (char)60;
+						arr[3] = 0;
+						break;
+					case 0x3c:
+						arr[0] = 0x82;
+						arr[1] = 0x01;
+						arr[2] = (char)76;
+						arr[3] = 0;
+						break;
+					case 0x3d:
+						arr[0] = 0x84;
+						arr[1] = 0x01;
+						arr[2] = (char)64;
+						arr[3] = 0;
+						break;
+					case 0x3e:
+						arr[0] = 0x86;
+						arr[1] = 0x01;
+						arr[2] = (char)64;
+						arr[3] = 0;
+						break;
+					case 0x3f:
+						arr[0] = 0x88;
+						arr[1] = 0x01;
+						arr[2] = (char)64;
+						arr[3] = 0;
+						break;
+					case 0x40:
+						arr[0] = 0x8a;
+						arr[1] = 0x01;
+						arr[2] = (char)64;
+						arr[3] = 0;
+						break;
+					case 0x41:
+						arr[0] = 0x8c;
+						arr[1] = 0x01;
+						arr[2] = (char)56;
+						arr[3] = 0;
+						break;
+					case 0x42:
+						arr[0] = 0x8e;
+						arr[1] = 0x01;
+						arr[2] = (char)96;
+						arr[3] = 0;
+						break;
+					case 0x43:
+						arr[0] = 0x90;
+						arr[1] = 0x01;
+						arr[2] = (char)64;
+						arr[3] = 0;
+						break;
+					case 0x44:
+						arr[0] = 0x92;
+						arr[1] = 0x01;
+						arr[2] = (char)80;
+						arr[3] = 0;
+						break;
+					case 0x45:
+						arr[0] = 0x94;
+						arr[1] = 0x01;
+						arr[2] = (char)60;
+						arr[3] = 0;
+						break;
+					case 0x46:
+						arr[0] = 0x96;
+						arr[1] = 0x01;
+						arr[2] = (char)68;
+						arr[3] = 0;
+						break;
+					case 0x47:
+						arr[0] = 0x98;
+						arr[1] = 0x01;
+						arr[2] = (char)60;
+						arr[3] = 0;
+						break;
+					case 0x48:
+						arr[0] = 0x9a;
+						arr[1] = 0x01;
+						arr[2] = (char)96;
+						arr[3] = 0;
+						break;
+					case 0x49:
+						arr[0] = 0x9c;
+						arr[1] = 0x01;
+						arr[2] = (char)100;
+						arr[3] = 0;
+						break;
+					case 0x4c:
+						arr[0] = 0x9e;
+						arr[1] = 0x01;
+						arr[2] = (char)56;
+						arr[3] = 0;
+						break;
+					case 0x4e:
+						arr[0] = 0xa0;
+						arr[1] = 0x01;
+						arr[2] = (char)88;
+						arr[3] = 0;
+						break;
+					case 0x4f:
+						arr[0] = 0xa2;
+						arr[1] = 0x01;
+						arr[2] = (char)56;
+						arr[3] = 0;
+						break;
 					default:
+						arr[0] = (char)22;
+						arr[1] = 0;
+						arr[2] = (char)60;
+						arr[3] = 0;
 						break;
 				}
 			}else{
@@ -893,22 +1290,286 @@ void conv2text(char* fname){
 						arr[0] = (char)124;
 						arr[1] = 0;
 						break;
-					case 32:
-						arr[0] = (char)112;
-						arr[1] = 1;
+					// case 32:
+					// 	arr[0] = (char)112;
+					// 	arr[1] = 1;
+					// 	break;
+					// case 34:
+					// 	arr[0] = (char)113;
+					// 	arr[1] = 1;
+					// 	break;
+					// case 36:
+					// 	arr[0] = (char)80;
+					// 	arr[1] = 1;
+					// 	break;
+					// case 38:
+					// 	arr[0] = (char)81;
+					// 	arr[1] = 1;
+					// 	break;
+					case 0x20:
+						arr[0] = 0x10;
+						arr[1] = 0x04;
 						break;
-					case 34:
-						arr[0] = (char)113;
-						arr[1] = 1;
+					case 0x22:
+						arr[0] = 0x11;
+						arr[1] = 0x04;
 						break;
-					case 36:
-						arr[0] = (char)80;
-						arr[1] = 1;
+					case 0x24:
+						arr[0] = 0x12;
+						arr[1] = 0x04;
 						break;
-					case 38:
-						arr[0] = (char)81;
-						arr[1] = 1;
+					case 0x26:
+						arr[0] = 0x13;
+						arr[1] = 0x04;
 						break;
+					case 0x28:
+						arr[0] = 0x90;
+						arr[1] = 0x04;
+						break;
+					case 0x2a:
+						arr[0] = 0x14;
+						arr[1] = 0x04;
+						break;
+					case 0x2c:
+						arr[0] = 0x15;
+						arr[1] = 0x04;
+						break;
+					case 0x2e:
+						arr[0] = 0x04;
+						arr[1] = 0x04;
+						break;
+					case 0x30:
+						arr[0] = 0x16;
+						arr[1] = 0x04;
+						break;
+					case 0x32:
+						arr[0] = 0x17;
+						arr[1] = 0x04;
+						break;
+					case 0x34:
+						arr[0] = 0x18;
+						arr[1] = 0x04;
+						break;
+					case 0x36:
+						arr[0] = 0x06;
+						arr[1] = 0x04;
+						break;
+					case 0x38:
+						arr[0] = 0x07;
+						arr[1] = 0x04;
+						break;
+					case 0x3a:
+						arr[0] = 0x19;
+						arr[1] = 0x04;
+						break;
+					case 0x3c:
+						arr[0] = 0x1a;
+						arr[1] = 0x04;
+						break;
+					case 0x3e:
+						arr[0] = 0x1b;
+						arr[1] = 0x04;
+						break;
+					case 0x40:
+						arr[0] = 0x1c;
+						arr[1] = 0x04;
+						break;
+					case 0x42:
+						arr[0] = 0x1d;
+						arr[1] = 0x04;
+						break;
+					case 0x44:
+						arr[0] = 0x1e;
+						arr[1] = 0x04;
+						break;
+					case 0x46:
+						arr[0] = 0x1f;
+						arr[1] = 0x04;
+						break;
+					case 0x48:
+						arr[0] = 0x20;
+						arr[1] = 0x04;
+						break;
+					case 0x4a:
+						arr[0] = 0x21;
+						arr[1] = 0x04;
+						break;
+					case 0x4c:
+						arr[0] = 0x22;
+						arr[1] = 0x04;
+						break;
+					case 0x4e:
+						arr[0] = 0x23;
+						arr[1] = 0x04;
+						break;
+					case 0x50:
+						arr[0] = 0x24;
+						arr[1] = 0x04;
+						break;
+					case 0x52:
+						arr[0] = 0x25;
+						arr[1] = 0x04;
+						break;
+					case 0x54:
+						arr[0] = 0x26;
+						arr[1] = 0x04;
+						break;
+					case 0x56:
+						arr[0] = 0x27;
+						arr[1] = 0x04;
+						break;
+					case 0x58:
+						arr[0] = 0x28;
+						arr[1] = 0x04;
+						break;
+					case 0x5a:
+						arr[0] = 0x29;
+						arr[1] = 0x04;
+						break;
+					case 0x5c:
+						arr[0] = 0x2c;
+						arr[1] = 0x04;
+						break;
+					case 0x5e:
+						arr[0] = 0x2e;
+						arr[1] = 0x04;
+						break;
+					case 0x60:
+						arr[0] = 0x2f;
+						arr[1] = 0x04;
+						break;
+					case 0x62:
+						arr[0] = 0x30;
+						arr[1] = 0x04;
+						break;
+					case 0x64:
+						arr[0] = 0x31;
+						arr[1] = 0x04;
+						break;
+					case 0x66:
+						arr[0] = 0x32;
+						arr[1] = 0x04;
+						break;
+					case 0x68:
+						arr[0] = 0x33;
+						arr[1] = 0x04;
+						break;
+					case 0x6a:
+						arr[0] = 0x91;
+						arr[1] = 0x04;
+						break;
+					case 0x6c:
+						arr[0] = 0x34;
+						arr[1] = 0x04;
+						break;
+					case 0x6e:
+						arr[0] = 0x35;
+						arr[1] = 0x04;
+						break;
+					case 0x70:
+						arr[0] = 0x54;
+						arr[1] = 0x04;
+						break;
+					case 0x72:
+						arr[0] = 0x36;
+						arr[1] = 0x04;
+						break;
+					case 0x74:
+						arr[0] = 0x37;
+						arr[1] = 0x04;
+						break;
+					case 0x76:
+						arr[0] = 0x38;
+						arr[1] = 0x04;
+						break;
+					case 0x78:
+						arr[0] = 0x56;
+						arr[1] = 0x04;
+						break;
+					case 0x7a:
+						arr[0] = 0x57;
+						arr[1] = 0x04;
+						break;
+					case 0x7c:
+						arr[0] = 0x39;
+						arr[1] = 0x04;
+						break;
+					case 0x7e:
+						arr[0] = 0x3a;
+						arr[1] = 0x04;
+						break;
+					case 0x80:
+						arr[0] = 0x3b;
+						arr[1] = 0x04;
+						break;
+					case 0x82:
+						arr[0] = 0x3c;
+						arr[1] = 0x04;
+						break;
+					case 0x84:
+						arr[0] = 0x3d;
+						arr[1] = 0x04;
+						break;
+					case 0x86:
+						arr[0] = 0x3e;
+						arr[1] = 0x04;
+						break;
+					case 0x88:
+						arr[0] = 0x3f;
+						arr[1] = 0x04;
+						break;
+					case 0x8a:
+						arr[0] = 0x40;
+						arr[1] = 0x04;
+						break;
+					case 0x8c:
+						arr[0] = 0x41;
+						arr[1] = 0x04;
+						break;
+					case 0x8e:
+						arr[0] = 0x42;
+						arr[1] = 0x04;
+						break;
+					case 0x90:
+						arr[0] = 0x43;
+						arr[1] = 0x04;
+						break;
+					case 0x92:
+						arr[0] = 0x44;
+						arr[1] = 0x04;
+						break;
+					case 0x94:
+						arr[0] = 0x45;
+						arr[1] = 0x04;
+						break;
+					case 0x96:
+						arr[0] = 0x46;
+						arr[1] = 0x04;
+						break;
+					case 0x98:
+						arr[0] = 0x47;
+						arr[1] = 0x04;
+						break;
+					case 0x9a:
+						arr[0] = 0x48;
+						arr[1] = 0x04;
+						break;
+					case 0x9c:
+						arr[0] = 0x49;
+						arr[1] = 0x04;
+						break;
+					case 0x9e:
+						arr[0] = 0x4c;
+						arr[1] = 0x04;
+						break;
+					case 0xa0:
+						arr[0] = 0x4e;
+						arr[1] = 0x04;
+						break;
+					case 0xa2:
+						arr[0] = 0x4f;
+						arr[1] = 0x04;
+						break;	
 					default:
 						break;	
 				}
